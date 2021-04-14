@@ -35,23 +35,26 @@ class AlbumsIndex extends React.Component {
 
   render() {
     return(
-      <section className="section">
-        <div className="container">
-          <div className="columns is-multiline">
+        <div>
             {this.state.albums.map(album =>
               <div key={album.id} >
                 <Link to={`/albums/${album.id}`}>
                   <h1>{album.title}</h1>
+                  <img src={album.artist.picture_small} alt={album.artist.name} />
                   <h2>{album.artist.name}</h2>
-                  <figure className="image">
-                    <img src={album.cover_medium} alt={album.name} />
-                  </figure>
+                  <h3>{album.label}</h3>
+                  <h3>{album.rating}</h3>
+                  <h3>{album.duration}</h3>
+                  <h3>{album.fans}</h3>
+                  <h3>{album.genre}</h3>
+                  <h3>{album.release_date}</h3>
+                  <img src={album.cover_medium} alt={album.name} />
+
                 </Link>
               </div>
             )}
           </div>
-        </div>
-      </section>
+
     )
   }
 }
