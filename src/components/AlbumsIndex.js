@@ -7,12 +7,12 @@ class AlbumsIndex extends React.Component {
     super(props)
 
     this.state = {
-      albums: null
+      albums : []
     }
   }
 
   getData() {
-    axios.get('https://api.deezer.com/search/album', {
+    axios.get('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album', {
       params: {
         q: this.props.match.params.query
       }
@@ -42,12 +42,6 @@ class AlbumsIndex extends React.Component {
                   <h1>{album.title}</h1>
                   <img src={album.artist.picture_small} alt={album.artist.name} />
                   <h2>{album.artist.name}</h2>
-                  <h3>{album.label}</h3>
-                  <h3>{album.rating}</h3>
-                  <h3>{album.duration}</h3>
-                  <h3>{album.fans}</h3>
-                  <h3>{album.genre}</h3>
-                  <h3>{album.release_date}</h3>
                   <img src={album.cover_medium} alt={album.name} />
 
                 </Link>
