@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Card from "react-bootstrap/Card";
+import { Link } from 'react-router-dom'
 
 
 class Home extends React.Component {
@@ -12,14 +13,10 @@ class Home extends React.Component {
     }
   }
   getData() {
-    axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album/${Math.floor(Math.random() * 500000) + 1}`, {
-      params: {
-        q: this.props.match.params.query
-      }
-    })
+    axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart`)
       .then(res => {
-        console.log(res.data)
-        this.setState({ albums: res.data.data })
+        this.setState({ albums: res.data.albums })
+        console.log(res.data.albums)
       })
   }
 
@@ -28,32 +25,23 @@ class Home extends React.Component {
   }
 
 
+
   render() {
     if(!this.state.album) return null
-    console.log(this.state)
-    return (
-
-      <div >
-        <h1>{`${this.state.album.artist.name} '${this.state.album.title}'`}</h1>
-        <hr />
-        <div>
-          <div>
-          
-              <img src={this.state.album.cover_medium} alt={this.state.album.title} />
-            
-
-          </div>
-          <div>
-            <h2>Artiste: {this.state.album.artist.name}</h2>
-            <h2>Label: {this.state.album.label}</h2>
-            <h2>Nombre de pistes: {this.state.album.nb_tracks}</h2>
-            <h2>Durée: {this.state.album.duration}</h2>
-            <h2>Date de sorie: {this.state.album.release_date}</h2>
-            <h2>Genre: {this.state.album.genres.data.length > 0 ? this.state.album.genres.data[0].name : 'Genre non spécifié' }</h2>
-            
-          </div>
-        </div>
-      </div>
+    console.log(this.state.album)
+    return (<div>
+      {this.state.albums.map(album =>
+      <Card style={{ width: '18rem' }}>
+      <Card.Body>
+        <Card.Title> {album.title}</Card.Title>
+        <Card.Img variant="top" src={album.cover_medium} alt={album.name}/>
+        <Card.Subtitle className="mb-2 text-muted">Par : {album.artist.name}</Card.Subtitle>
+        <Card.Img variant="top" src={album.artist.picture_medium} alt={album.artist.name} />
+        <Link to={`/albums/${album.id}`}><button type="button">plus d'info</button></Link>
+      </Card.Body>
+    </Card>
+    )}  
+    </div>
   )
   }
 }
