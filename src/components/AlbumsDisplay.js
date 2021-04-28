@@ -21,6 +21,8 @@ class AlbumsShow extends React.Component {
     console.log(this.state)
     return (
 
+
+
         <div >
           <h1>{`${this.state.album.artist.name} '${this.state.album.title}'`}</h1>
           <hr />

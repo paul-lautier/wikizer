@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Card from "react-bootstrap/Card";
 
 class AlbumsIndex extends React.Component {
   constructor(props){
@@ -10,6 +11,8 @@ class AlbumsIndex extends React.Component {
       albums : []
     }
   }
+
+
 
   getData() {
     axios.get('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album', {
@@ -35,23 +38,19 @@ class AlbumsIndex extends React.Component {
 
   render() {
     return(
-        <div>
-            {this.state.albums.map(album =>
-              <div key={album.id} >
-                <Link to={`/albums/${album.id}`}>
-                  <h1>Titre de l'album : {album.title}</h1>
-                  <img src={album.cover_medium} alt={album.name} />
-                  <h2>Nom de l'artiste : {album.artist.name}</h2>
-                  <img src={album.artist.picture_small} alt={album.artist.name} />
-                  <br></br>
-                  --------------------------------------------------------------------------
-                  
-                </Link>
-              </div>
-              
-            )}
-            
-          </div>
+    <div>
+    {this.state.albums.map(album =>
+    <Card style={{ width: '18rem' }}>
+    <Card.Body>
+      <Card.Title> {album.title}</Card.Title>
+      <Card.Img variant="top" src={album.cover_medium} alt={album.name}/>
+      <Card.Subtitle className="mb-2 text-muted">Par : {album.artist.name}</Card.Subtitle>
+      <Card.Img variant="top" src={album.artist.picture_medium} alt={album.artist.name} />
+      <Link to={`/albums/${album.id}`}><button type="button">plus d'info</button></Link>
+    </Card.Body>
+  </Card>
+  )}  
+  </div>
 
     )
   }
