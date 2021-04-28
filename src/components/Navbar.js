@@ -26,11 +26,16 @@ class Navbar extends React.Component {
     return (
 
           <div>
-              <Link to="/" className="navbar-item">Home</Link>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <Link to="/" class="navbar-brand">Home</Link>
+              <div class="container-fluid">
                 <form onSubmit={this.handleSubmit}>
                       <input className="input is-small is-full-width" type="search" onChange={this.handleSearch} placeholder="Rechercher votre musique"/>
                 </form>
+                </div>
+                </nav>
             </div>
+          
     )
   }
 }

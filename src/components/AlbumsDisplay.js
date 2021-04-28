@@ -37,7 +37,7 @@ class AlbumsShow extends React.Component {
               <h2>Nombre de pistes: {this.state.album.nb_tracks}</h2>
               <h2>Durée: {this.state.album.duration}</h2>
               <h2>Date de sorie: {this.state.album.release_date}</h2>
-              <h2>Genre: {this.state.album.genres.data.length > 0 ? this.state.album.genres.data[0].name : 'N/A' }</h2>
+              <h2>Genre: {this.state.album.genres.data.length > 0 ? this.state.album.genres.data[0].name : 'Genre non spécifié' }</h2>
               
             </div>
           </div>
