@@ -24,6 +24,7 @@ class Navbar extends React.Component {
 
   render() {
     return (
+
           <div>
               <Link to="/" className="navbar-item">Home</Link>
                 <form onSubmit={this.handleSubmit}>
